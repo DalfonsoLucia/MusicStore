@@ -1,5 +1,6 @@
-package com.lucy.musicStore.ordination.data.dto;
+package com.lucy.musicStore.ordination.data.mapper;
 
+import com.lucy.musicStore.ordination.data.dto.OrdinationDTO;
 import com.lucy.musicStore.ordination.data.model.Ordination;
 import org.mapstruct.Mapping;
 

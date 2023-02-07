@@ -1,6 +1,7 @@
-package com.lucy.musicStore.singles.data.dto;
+package com.lucy.musicStore.product.music.mapper;
 
-import com.lucy.musicStore.singles.data.model.Single;
+import com.lucy.musicStore.product.music.data.dto.SingleDTO;
+import com.lucy.musicStore.product.music.data.model.Single;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;

@@ -1,5 +1,6 @@
-package com.lucy.musicStore.sale.data.dto;
+package com.lucy.musicStore.sale.data.mapper;
 
+import com.lucy.musicStore.sale.data.dto.SaleDTO;
 import com.lucy.musicStore.sale.data.model.Sale;
 import org.mapstruct.Mapping;
 

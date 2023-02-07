@@ -1,4 +1,4 @@
-package com.lucy.musicStore.singles.data.dto;
+package com.lucy.musicStore.product.music.data.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class SingleDTO {
+public class AlbumDTO {
     private Integer id;
     private String artist;
     private String title;
