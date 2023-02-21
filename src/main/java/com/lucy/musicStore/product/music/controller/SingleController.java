@@ -1,16 +1,15 @@
 package com.lucy.musicStore.product.music.controller;
 
+import com.lucy.musicStore.product.music.data.dto.AlbumDTO;
 import com.lucy.musicStore.product.music.data.dto.SingleDTO;
-import com.lucy.musicStore.product.music.exception.NoArtistFound;
+import com.lucy.musicStore.product.music.exception.NoArtistFoundException;
+import com.lucy.musicStore.product.music.exception.NoPriceFoundException;
 import com.lucy.musicStore.product.music.exception.NoSingleContentException;
+import com.lucy.musicStore.product.music.exception.NoTitleFoundException;
 import com.lucy.musicStore.product.music.service.SingleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,18 +26,27 @@ public class SingleController {
         return singleService.findAllSingles();
     }
 
-    @GetMapping("findById")
+    @GetMapping("id/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public SingleDTO findById(Integer id) {
-        return singleService.findById(findById(id).getId());
+    public SingleDTO findById(@PathVariable Integer id) {
+        return singleService.findById(id);
     }
 
-    @GetMapping("findByArtist")
+    @GetMapping("{artist}")
     @ResponseStatus(HttpStatus.OK)
-    public List<SingleDTO> findByArtist(String artist) throws NoArtistFound, NoSingleContentException {
+    public List<SingleDTO> findByArtist(@PathVariable String artist) throws NoArtistFoundException, NoSingleContentException {
         return singleService.findByArtist(artist);
     }
 
+    @GetMapping("title/{title}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<SingleDTO> findByTitle(@PathVariable String title) throws NoTitleFoundException {
+        return singleService.findByTitle(title);
+    }
 
-
+    @GetMapping("price/{price}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<SingleDTO> findByPrice(@PathVariable Double price) throws NoPriceFoundException {
+        return singleService.findByPrice(price);
+    }
 }

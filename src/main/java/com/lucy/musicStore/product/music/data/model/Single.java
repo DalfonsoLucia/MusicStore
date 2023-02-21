@@ -1,14 +1,12 @@
 package com.lucy.musicStore.product.music.data.model;
 
-import com.lucy.musicStore.product.music.data.model.abstactModel.ProductMusicAbstract;
-import com.lucy.musicStore.stock.data.model.Stock;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,23 +14,26 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = Single.TABLE_NAME)
-public class Single extends ProductMusicAbstract {
+public class Single extends MusicDetail {
     public static final String TABLE_NAME = "single";
 
     @Id
-    @Column(name = "ID_SINGLE")
+    @Column(name = "id_single")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "ARTIST")
-    private String artist;
 
-    @ManyToMany(mappedBy = "likedSingles")
-    Set<Album> likedAlbums;
+
+    @ManyToMany(mappedBy = "relSingles")
+    List<Album> relAlbums;
 
     @ManyToOne
-    @JoinColumn(name = "stock_id", nullable=false)
-    private Stock stock;
+    @JoinColumn(name = "id_artist_detail", nullable=false)
+    private ArtistDetail artistDetail;
 
-
+    /*
+    //relazione tra l'entità Sale e l'entità Single
+    @ManyToMany(mappedBy = "singlesSale")
+    List<Sale> SinglesSoldList;
+     */
 
 }

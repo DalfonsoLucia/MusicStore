@@ -14,13 +14,21 @@ public interface SingleMapper {
     @Mapping(source = "artist", target = "artist")
     @Mapping(source = "title", target = "title")
     @Mapping(source = "genre", target = "genre")
+    @Mapping(source = "year", target = "year")
+    @Mapping(source = "amountStock", target = "amountStock")
     @Mapping(source = "type", target = "type")
+    @Mapping(source = "insertDate", target = "insertDate")
+    @Mapping(source = "price", target = "price")
     SingleDTO singleToSingleDTO(Single single);
 
     @Mapping(source = "id", target = "id")
     @Mapping(source = "artist", target = "artist")
     @Mapping(source = "title", target = "title")
     @Mapping(source = "genre", target = "genre")
+    @Mapping(source = "year", target = "year")
+    @Mapping(source = "amountStock", target = "amountStock")
     @Mapping(source = "type", target = "type")
+    @Mapping(source = "insertDate", target = "insertDate")
+    @Mapping(source = "price", target = "price")
     Single singleDTOToSingle(SingleDTO singleDTO);
 }

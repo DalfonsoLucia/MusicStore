@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -14,5 +16,9 @@ public class SingleDTO {
     private String artist;
     private String title;
     private String genre;
+    private Date year;
+    private Double amountStock;
     private String type;
+    private Date insertDate;
+    private Double price;
 }

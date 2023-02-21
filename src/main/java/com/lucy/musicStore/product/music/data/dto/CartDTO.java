@@ -1,26 +1,26 @@
-package com.lucy.musicStore.sale.data.dto;
+package com.lucy.musicStore.product.music.data.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
 import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class SaleDTO {
+public class CartDTO {
 
     private Integer id;
     private String artist;
     private String title;
+    private String genre;
     private String type;
-    private String unitPrice;
-    private Double amount;
-    private Double totalPrice;
+    private Double unitPrice;
+    private Double amountSale;
+    private Date insertCartsDate;
 }
 
 
