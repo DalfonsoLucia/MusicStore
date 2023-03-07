@@ -1,9 +1,14 @@
 package com.lucy.musicStore.ordination.data.dto;
 
+import com.lucy.musicStore.product.music.data.model.Album;
+import com.lucy.musicStore.product.music.data.model.Single;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Date;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,10 +17,7 @@ import lombok.Setter;
 public class OrdinationDTO {
 
     private Integer id;
-    private String artist;
-    private String title;
-    private String type;
-    private String unitPrice;
-    private Double amount;
-    private Double totalPrice;
+    private Date insertOrdinationDate;
+    private List<Album> albums;
+    private List<Single> singles;
 }

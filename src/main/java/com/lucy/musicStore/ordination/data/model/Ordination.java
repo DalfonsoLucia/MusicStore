@@ -1,5 +1,7 @@
 package com.lucy.musicStore.ordination.data.model;
 
+import com.lucy.musicStore.product.music.data.model.Album;
+import com.lucy.musicStore.product.music.data.model.Single;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +9,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,23 +21,15 @@ public class Ordination {
     public static final String TABLE_NAME = "ordination";
 
     @Id
-    @Column(name = "ID_ORDINATION")
+    @Column(name = "id_ordination")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "ARTIST")
-    private String artist;
-    @Column(name = "TITLE")
-    private String title;
-    @Column(name = "ALBUM")
-    private String album;
-    @Column(name = "SORT_KIND")
-    private String type;
-    @Column(name = "UNIT_PRICE")
-    private String unitPrice;
-    @Column(name = "AMOUNT")
-    private Double amount;
-    @Column(name = "TOTAL_PRICE")
-    private Double totalPrice;
-    @Column(name = "CREATED_DATE")
-    private Date createdDate;
+    @Column(name = "insert_ordination_date")
+    private Date insertOrdinationDate;
+
+    @OneToMany(cascade=CascadeType.ALL)
+    private List<Album> albums;
+
+    @OneToMany(cascade=CascadeType.ALL)
+    private List<Single> singles;
 }

@@ -1,12 +1,12 @@
 package com.lucy.musicStore.product.music.data.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @NoArgsConstructor
@@ -25,21 +25,18 @@ public class Album extends MusicDetail {
     @Column(name = "track_number")
     private Integer tracksNumber;
 
-    @ManyToMany
+
+    @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(
             name = "musicRelation",
             joinColumns = @JoinColumn(name = "id_single"),
             inverseJoinColumns = @JoinColumn(name = "id_album"))
     List<Single> relSingles;
 
-    @ManyToOne
-    @JoinColumn(name = "id_artist_detail", nullable=false)
+    @JsonIgnore
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "id_artist_detail")
     private ArtistDetail artistDetail;
 
-    /*
-    //relazione tra l'entità Sale e l'entità Album
-    @ManyToMany(mappedBy = "albumsSale")
-    List<Sale> AlbumsSoldList;
-     */
 
 }

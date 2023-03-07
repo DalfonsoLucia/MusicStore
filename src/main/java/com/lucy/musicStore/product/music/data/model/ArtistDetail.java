@@ -34,9 +34,11 @@ public class ArtistDetail {
     @Column(name = "note")
     private String note;
 
-    @OneToMany(targetEntity = Album.class, mappedBy = "artistDetail", fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = Album.class, mappedBy = "artistDetail",
+            fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
     List<Album> albumsList;
 
-    @OneToMany(targetEntity = Single.class, mappedBy = "artistDetail", fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = Single.class, mappedBy = "artistDetail",
+            fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Single> singlesList;
 }

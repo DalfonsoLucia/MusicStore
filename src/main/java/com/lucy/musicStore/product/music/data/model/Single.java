@@ -1,5 +1,6 @@
 package com.lucy.musicStore.product.music.data.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,17 +24,13 @@ public class Single extends MusicDetail {
     private Integer id;
 
 
-    @ManyToMany(mappedBy = "relSingles")
+    @ManyToMany(mappedBy = "relSingles", cascade=CascadeType.ALL)
     List<Album> relAlbums;
 
-    @ManyToOne
-    @JoinColumn(name = "id_artist_detail", nullable=false)
+    @JsonIgnore
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "id_artist_detail")
     private ArtistDetail artistDetail;
 
-    /*
-    //relazione tra l'entità Sale e l'entità Single
-    @ManyToMany(mappedBy = "singlesSale")
-    List<Sale> SinglesSoldList;
-     */
 
 }

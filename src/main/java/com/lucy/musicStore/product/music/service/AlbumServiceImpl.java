@@ -1,7 +1,7 @@
 package com.lucy.musicStore.product.music.service;
 
+import com.lucy.musicStore.exception.*;
 import com.lucy.musicStore.product.music.data.dto.AlbumDTO;
-import com.lucy.musicStore.product.music.exception.*;
 import com.lucy.musicStore.product.music.mapper.AlbumMapper;
 import com.lucy.musicStore.product.music.repository.AlbumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +31,8 @@ public class AlbumServiceImpl implements AlbumService{
     }
 
     @Override
-    public AlbumDTO findById(Integer id) {
-        return albumMapper.albumToAlbumDTO(albumRepository.findById(id).get());
+    public AlbumDTO findById(Integer id) throws NoAlbumIdFoundException {
+        return albumMapper.albumToAlbumDTO(albumRepository.findById(id).orElseThrow(NoAlbumIdFoundException::new));
     }
 
     @Override

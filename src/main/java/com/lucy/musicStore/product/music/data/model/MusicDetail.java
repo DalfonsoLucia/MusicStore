@@ -1,5 +1,6 @@
 package com.lucy.musicStore.product.music.data.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,7 +32,9 @@ public class MusicDetail {
     private String type;
     @Column(name = "insert_date")
     private Date insertDate;
-
+    @JsonIgnore
+    @Column(name = "quantity")
+    private Integer quantity;
 
 
 

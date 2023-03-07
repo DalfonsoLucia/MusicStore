@@ -19,6 +19,8 @@ public interface AlbumMapper {
     @Mapping(source = "type", target = "type")
     @Mapping(source = "insertDate", target = "insertDate")
     @Mapping(source = "price", target = "price")
+    @Mapping(source = "relSingles", target = "relSingles")
+    @Mapping(source = "artistDetail", target = "artistDetail")
     AlbumDTO albumToAlbumDTO (Album album);
 
     @Mapping(source = "id", target = "id")
@@ -32,4 +34,3 @@ public interface AlbumMapper {
     @Mapping(source = "price", target = "price")
     Album albumDTOToAlbum (AlbumDTO albumDTO);
 }
-

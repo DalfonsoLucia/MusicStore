@@ -1,12 +1,13 @@
 package com.lucy.musicStore.sale.data.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.lucy.musicStore.cart.data.model.Cart;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Time;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -19,24 +20,26 @@ public class Sale {
     public static final String TABLE_NAME = "sale";
 
     @Id
-    @Column(name = "ID_SALE")
+    @Column(name = "id_sale")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "ARTIST")
-    private String artist;
-    @Column(name = "TITLE")
-    private String title;
-    @Column(name = "ALBUM")
-    private String album;
-    @Column(name = "SORT_KIND")
-    private String type;
-    @Column(name = "UNIT_PRICE")
-    private String unitPrice;
-    @Column(name = "AMOUNT")
-    private Double amount;
-    @Column(name = "TOTAL_PRICE")
+    @Column(name = "item_numeber")
+    private Integer itemNumber;
+    @Column(name = "total_price")
     private Double totalPrice;
-    @Column(name = "CREATED_DATE")
-    private Date createdDate;
+    @JsonFormat(pattern = "yyyy-mm-dd hh:mm:ss")
+    @Column(name = "insert_sale_date")
+    private Date insertSalesDate;
+    @Column(name = "sold")
+    private Boolean sold;
+
+    //è una ManyToOne perchè
+    // in un carrello ci possono essere più record che comporanno poi una vendita
+    @OneToOne(targetEntity=Cart.class, mappedBy="sale",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+    private Cart cart;
+
+
+    /*@OneToOne(mappedBy = "sale")
+    private SaleDetail saleDetail;*/
 
 }

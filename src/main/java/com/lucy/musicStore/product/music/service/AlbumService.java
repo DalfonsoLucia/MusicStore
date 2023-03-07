@@ -1,7 +1,7 @@
 package com.lucy.musicStore.product.music.service;
 
+import com.lucy.musicStore.exception.*;
 import com.lucy.musicStore.product.music.data.dto.AlbumDTO;
-import com.lucy.musicStore.product.music.exception.*;
 
 import java.util.Date;
 import java.util.List;
@@ -10,7 +10,7 @@ public interface AlbumService {
 
     List<AlbumDTO> findAllAlbum() throws NoAlbumContentException;
 
-    AlbumDTO findById(Integer id);
+    AlbumDTO findById(Integer id) throws NoAlbumIdFoundException;
     List<AlbumDTO> findByArtist(String artist) throws NoArtistFoundException;
     List<AlbumDTO> findByTitle(String title) throws NoTitleFoundException;
     List<AlbumDTO> findByYear(Date year) throws NoYearFoundException;

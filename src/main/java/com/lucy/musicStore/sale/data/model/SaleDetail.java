@@ -1,20 +1,23 @@
-package com.lucy.musicStore.product.music.data.model;
+package com.lucy.musicStore.sale.data.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@MappedSuperclass
-public class ManagementDetail {
+@Entity
+public class SaleDetail {
 
+    @Id
+    @Column(name = "id_sale_detail")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     @Column(name = "artist")
     private String artist;
     @Column(name = "title")
@@ -27,4 +30,8 @@ public class ManagementDetail {
     private String type;
     @Column(name = "note")
     private String note;
+
+    @OneToOne
+    @JoinColumn(name = "id_sale")
+    private Sale sale;
 }

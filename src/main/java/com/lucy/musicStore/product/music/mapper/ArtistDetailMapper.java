@@ -17,7 +17,9 @@ public interface ArtistDetailMapper {
     @Mapping(source = "bandName", target = "bandName")
     @Mapping(source = "description", target = "description")
     @Mapping(source = "note", target = "note")
-    ArtistDetailDTO albumDetailToAlbumDetailDTO (ArtistDetail albumDetail);
+    @Mapping(source = "albumsList", target = "albumsList")
+    @Mapping(source = "singlesList", target = "singlesList")
+    ArtistDetailDTO albumDetailToAlbumDetailDTO(ArtistDetail albumDetail);
 
     @Mapping(source = "id", target = "id")
     @Mapping(source = "artist", target = "artist")
@@ -26,5 +28,7 @@ public interface ArtistDetailMapper {
     @Mapping(source = "bandName", target = "bandName")
     @Mapping(source = "description", target = "description")
     @Mapping(source = "note", target = "note")
-    ArtistDetail albumDetailDTOToAlbumDetail (ArtistDetailDTO albumDetailDTO);
+    @Mapping(source = "albumsList", target = "albumsList")
+    @Mapping(source = "singlesList", target = "singlesList")
+    ArtistDetail albumDetailDTOToAlbumDetail(ArtistDetailDTO albumDetailDTO);
 }

@@ -1,7 +1,7 @@
 package com.lucy.musicStore.product.music.controller;
 
+import com.lucy.musicStore.exception.*;
 import com.lucy.musicStore.product.music.data.dto.AlbumDTO;
-import com.lucy.musicStore.product.music.exception.*;
 import com.lucy.musicStore.product.music.service.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +25,7 @@ public class AlbumController {
 
     @GetMapping("id/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public AlbumDTO findById(@PathVariable Integer id) {
+    public AlbumDTO findById(@PathVariable Integer id) throws NoAlbumIdFoundException {
         return albumService.findById(id);
     }
 
