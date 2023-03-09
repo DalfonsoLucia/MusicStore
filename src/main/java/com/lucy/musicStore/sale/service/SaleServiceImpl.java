@@ -5,8 +5,10 @@ import com.lucy.musicStore.cart.data.model.CartDetail;
 import com.lucy.musicStore.cart.repository.CartRepository;
 import com.lucy.musicStore.exception.NoSaleIdFoundException;
 import com.lucy.musicStore.product.music.data.model.Album;
+import com.lucy.musicStore.product.music.data.model.Gadget;
 import com.lucy.musicStore.product.music.data.model.Single;
 import com.lucy.musicStore.product.music.repository.AlbumRepository;
+import com.lucy.musicStore.product.music.repository.GadgetRepository;
 import com.lucy.musicStore.product.music.repository.SingleRepository;
 import com.lucy.musicStore.sale.data.model.Sale;
 import com.lucy.musicStore.sale.repository.SaleRepository;
@@ -30,6 +32,9 @@ public class SaleServiceImpl implements SaleService {
     @Autowired
     SingleRepository singleRepository;
 
+    @Autowired
+    GadgetRepository gadgetRepository;
+
     @Override
     public Sale findById(Integer id) throws NoSaleIdFoundException {
         return this.saleRepository.findById(id).orElseThrow(NoSaleIdFoundException::new
@@ -47,9 +52,10 @@ public class SaleServiceImpl implements SaleService {
         sale.setTotalPrice(cart.getSubtotal());
         sale.setSold(true);
         sale.setCart(cart);
-        saleRepository.save(sale);
 
         cart.getCartDetails().forEach(this::updateStock);
+        cart.getGadgets().forEach(this::updateStockGadget);
+        saleRepository.save(sale);
         return sale;
     }
 
@@ -61,5 +67,10 @@ public class SaleServiceImpl implements SaleService {
             Single single = singleRepository.findById(cartDetail.getId()).get();
             single.setAmountStock(single.getAmountStock() - cartDetail.getQuantity());
         }
+    }
+
+    public void updateStockGadget(Gadget gadget) {
+        Gadget gadgetStock = gadgetRepository.findById(gadget.getId()).get();
+        gadgetStock.setAmountStockGadget(gadgetStock.getAmountStockGadget() - gadget.getQuantity());
     }
 }

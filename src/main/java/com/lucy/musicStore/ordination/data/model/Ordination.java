@@ -1,6 +1,8 @@
 package com.lucy.musicStore.ordination.data.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.lucy.musicStore.product.music.data.model.Album;
+import com.lucy.musicStore.product.music.data.model.Gadget;
 import com.lucy.musicStore.product.music.data.model.Single;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,11 +27,15 @@ public class Ordination {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "insert_ordination_date")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date insertOrdinationDate;
 
-    @OneToMany(cascade=CascadeType.ALL)
+    @ManyToMany
     private List<Album> albums;
 
-    @OneToMany(cascade=CascadeType.ALL)
+    @ManyToMany
     private List<Single> singles;
+
+    @ManyToMany
+    private List<Gadget> gadgets;
 }

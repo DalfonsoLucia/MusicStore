@@ -27,7 +27,7 @@ public class Sale {
     private Integer itemNumber;
     @Column(name = "total_price")
     private Double totalPrice;
-    @JsonFormat(pattern = "yyyy-mm-dd hh:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(name = "insert_sale_date")
     private Date insertSalesDate;
     @Column(name = "sold")
@@ -37,9 +37,5 @@ public class Sale {
     // in un carrello ci possono essere più record che comporanno poi una vendita
     @OneToOne(targetEntity=Cart.class, mappedBy="sale",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     private Cart cart;
-
-
-    /*@OneToOne(mappedBy = "sale")
-    private SaleDetail saleDetail;*/
 
 }

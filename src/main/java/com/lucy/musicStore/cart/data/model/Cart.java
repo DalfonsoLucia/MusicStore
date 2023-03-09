@@ -2,6 +2,7 @@ package com.lucy.musicStore.cart.data.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.lucy.musicStore.product.music.data.model.Gadget;
 import com.lucy.musicStore.sale.data.model.Sale;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,18 +25,22 @@ public class Cart {
     @Id
     @Column(name = "id_cart")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;/*
+    private Integer id;
+    /*
     @Column(name = "unit_price")
-    private Double unitPrice;*/
+    private Double unitPrice;
+    */
     @Column(name = "amounts_purchased")
     private Double amountPurchased;
     @Column(name = "subtotal")
     private Double subtotal;
-    @JsonFormat(pattern = "yyyy-mm-dd hh:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(name = "insert_cart_date")
-    private Date insertCartsDate;/*
+    private Date insertCartsDate;
+    /*
     @Column(name = "sold")
-    private Boolean sold;*/
+    private Boolean sold;
+    */
 
     @JsonIgnore
     @OneToOne
@@ -44,5 +49,8 @@ public class Cart {
 
     @OneToMany(mappedBy = "cart")
     private List<CartDetail> cartDetails;
+
+    @ManyToMany
+    private List<Gadget> gadgets;
 }
 

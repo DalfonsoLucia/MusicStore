@@ -146,4 +146,89 @@ public class GlobalExceptionControllerAdvice {
         return errorResponse;
     }
     //LE ECCEZIONI PER TITOLO, ARTISTA, PREZZO E ARTISTA SONO COMPATIBILI A QUELLE DI ARTIST
+
+    // GESTIONE ECCEZIONI PER LA SEZIONE ORDINATION
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    @ExceptionHandler(value = NoOrdinationSingleIdFoundException.class)
+    public ResponseEntity<ApiError> NoOrdinationSingleFoundExceptionHadler(NoOrdinationSingleIdFoundException e, WebRequest request) {
+
+        ApiError error = new ApiError();
+        error.setMessage("No single ID found for this ordination");
+        error.setStatusCode(HttpStatus.NOT_FOUND);
+        error.setTimeStamp(LocalDateTime.now());
+        error.setPath(request.getDescription(false));
+
+        ResponseEntity<ApiError> errorResponse = ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(error);
+        return errorResponse;
+    }
+
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    @ExceptionHandler(value = NoOrdinationAlbumIdFoundException.class)
+    public ResponseEntity<ApiError> NoOrdinationAlbumFoundExceptionHadler(NoOrdinationAlbumIdFoundException e, WebRequest request) {
+
+        ApiError error = new ApiError();
+        error.setMessage("No album ID found for this ordination");
+        error.setStatusCode(HttpStatus.NOT_FOUND);
+        error.setTimeStamp(LocalDateTime.now());
+        error.setPath(request.getDescription(false));
+
+        ResponseEntity<ApiError> errorResponse = ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(error);
+        return errorResponse;
+    }
+
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    @ExceptionHandler(value = NoOrdinationInsertDateFoundException.class)
+    public ResponseEntity<ApiError> NoOrdinationDateFoundExceptionHadler(NoOrdinationInsertDateFoundException e, WebRequest request) {
+
+        ApiError error = new ApiError();
+        error.setMessage("No insert date found for this ordination");
+        error.setStatusCode(HttpStatus.NOT_FOUND);
+        error.setTimeStamp(LocalDateTime.now());
+        error.setPath(request.getDescription(false));
+
+        ResponseEntity<ApiError> errorResponse = ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(error);
+        return errorResponse;
+    }
+
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    @ExceptionHandler(value = NoOrdinationGadgetIdFoundException.class)
+    public ResponseEntity<ApiError> NoOrdinationGadgetFoundExceptionHadler(NoOrdinationGadgetIdFoundException e, WebRequest request) {
+
+        ApiError error = new ApiError();
+        error.setMessage("No gadget found for this ordination");
+        error.setStatusCode(HttpStatus.NOT_FOUND);
+        error.setTimeStamp(LocalDateTime.now());
+        error.setPath(request.getDescription(false));
+
+        ResponseEntity<ApiError> errorResponse = ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(error);
+        return errorResponse;
+    }
+
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    @ExceptionHandler(value = NoGadgetIdFoundException.class)
+    public ResponseEntity<ApiError> NoGadgetIdFoundExceptionHadler(NoGadgetIdFoundException e, WebRequest request) {
+
+        ApiError error = new ApiError();
+        error.setMessage("No gadget found with this ID");
+        error.setStatusCode(HttpStatus.NOT_FOUND);
+        error.setTimeStamp(LocalDateTime.now());
+        error.setPath(request.getDescription(false));
+
+        ResponseEntity<ApiError> errorResponse = ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(error);
+        return errorResponse;
+    }
+
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    @ExceptionHandler(value = NoGadgetTypeFoundException.class)
+    public ResponseEntity<ApiError> NoGadgetTypeFoundExceptionHadler(NoGadgetTypeFoundException e, WebRequest request) {
+
+        ApiError error = new ApiError();
+        error.setMessage("No gadget type found");
+        error.setStatusCode(HttpStatus.NOT_FOUND);
+        error.setTimeStamp(LocalDateTime.now());
+        error.setPath(request.getDescription(false));
+
+        ResponseEntity<ApiError> errorResponse = ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(error);
+        return errorResponse;
+    }
 }

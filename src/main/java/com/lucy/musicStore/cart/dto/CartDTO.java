@@ -18,7 +18,7 @@ public class CartDTO {
     //private Double unitPrice;
     private Double amountPurchased;
     private Double subtotal;
-    @JsonFormat(pattern = "yyyy-mm-dd hh:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date insertCartsDate;
     //private Boolean sold;
 }

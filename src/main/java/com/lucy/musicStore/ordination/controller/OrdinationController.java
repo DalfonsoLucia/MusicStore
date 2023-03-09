@@ -1,6 +1,6 @@
 package com.lucy.musicStore.ordination.controller;
 
-import com.lucy.musicStore.exception.NoStockIdFoundException;
+import com.lucy.musicStore.exception.*;
 import com.lucy.musicStore.ordination.data.dto.OrdinationDTO;
 import com.lucy.musicStore.ordination.data.model.Ordination;
 import com.lucy.musicStore.ordination.service.OrdinationService;
@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/order")
@@ -27,25 +29,31 @@ public class OrdinationController {
 
     @GetMapping("id/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Ordination findById(Integer id) throws NoStockIdFoundException {
+    public Ordination findById(@PathVariable Integer id) throws NoStockIdFoundException {
         return ordinationService.findById(id);
     }
 
-    @GetMapping("single/{single}")
+    @GetMapping("single/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Ordination findBySingle(Single single) {
-        return ordinationService.findBySingle(single);
+    public List<Ordination> findBySingle(@PathVariable Integer id) throws NoOrdinationSingleIdFoundException {
+        return ordinationService.findBySingle(id);
     }
 
-    @GetMapping("album/{album}")
+    @GetMapping("album/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Ordination findByAlbum(Album album) {
-        return ordinationService.findByAlbum(album);
+    public List<Ordination> findByAlbum(@PathVariable Integer id) throws NoOrdinationAlbumIdFoundException {
+        return ordinationService.findByAlbum(id);
+    }
+
+    @GetMapping("gadget/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Ordination> findByGadget(@PathVariable Integer id) throws NoOrdinationGadgetIdFoundException {
+        return ordinationService.findByGadget(id);
     }
 
     @GetMapping("dateNewOrder/{insertOrdinationDate}")
     @ResponseStatus(HttpStatus.OK)
-    public Ordination findByOrderDate(Date insertOrdinationDate) {
+    public List<Ordination> findByOrderDate(@PathVariable String insertOrdinationDate) throws NoOrdinationInsertDateFoundException {
         return ordinationService.findByOrderDate(insertOrdinationDate);
     }
 }

@@ -1,6 +1,7 @@
 package com.lucy.musicStore.ordination.data.dto;
 
 import com.lucy.musicStore.product.music.data.model.Album;
+import com.lucy.musicStore.product.music.data.model.Gadget;
 import com.lucy.musicStore.product.music.data.model.Single;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,4 +21,6 @@ public class OrdinationDTO {
     private Date insertOrdinationDate;
     private List<Album> albums;
     private List<Single> singles;
+
+    private List<Gadget> gadgets;
 }

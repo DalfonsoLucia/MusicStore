@@ -7,10 +7,14 @@ import com.lucy.musicStore.cart.mapper.CartDetailMapper;
 import com.lucy.musicStore.cart.mapper.CartMapper;
 import com.lucy.musicStore.cart.repository.CartRepository;
 import com.lucy.musicStore.exception.*;
+import com.lucy.musicStore.product.music.data.dto.GadgetDTO;
 import com.lucy.musicStore.product.music.data.dto.MusicDetailDTO;
 import com.lucy.musicStore.product.music.data.model.Album;
+import com.lucy.musicStore.product.music.data.model.Gadget;
 import com.lucy.musicStore.product.music.data.model.Single;
+import com.lucy.musicStore.product.music.mapper.GadgetMapper;
 import com.lucy.musicStore.product.music.repository.AlbumRepository;
+import com.lucy.musicStore.product.music.repository.GadgetRepository;
 import com.lucy.musicStore.product.music.repository.SingleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +40,12 @@ public class CartServiceImpl implements CartService {
 
     @Autowired
     SingleRepository singleRepository;
+
+    @Autowired
+    GadgetMapper gadgetMapper;
+
+    @Autowired
+    GadgetRepository gadgetRepository;
 
 
     @Override
@@ -82,10 +92,11 @@ public class CartServiceImpl implements CartService {
 
 
     @Override
-    public Cart calculateSubtotal(List<MusicDetailDTO> musicDetailDTOS) throws ParseException {
+    public Cart calculateSubtotal(List<MusicDetailDTO> musicDetailDTOS, List<GadgetDTO> gadgetList) throws ParseException {
         Double subtotalCart = 0.0;
         Double amountCart = 0.0;
         List<CartDetail> cartDetailList = new ArrayList<>();
+        List<Gadget> gadgets = new ArrayList<>();
         for (MusicDetailDTO prod : musicDetailDTOS) {
             amountCart += prod.getQuantity();
             CartDetail cartDetail = new CartDetail();
@@ -109,6 +120,11 @@ public class CartServiceImpl implements CartService {
                 cartDetailList.add(cartDetail);
             }
         }
+        for (GadgetDTO gad : gadgetList) {
+            Gadget gadgetSave = gadgetRepository.findById(gad.getId()).get();
+            subtotalCart += Math.round(gadgetSave.getPrice() * gad.getQuantity());
+            gadgets.add(gadgetSave);
+        }
         /*SimpleDateFormat isoFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         isoFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
         Date date = isoFormat.parse(new Date());*/
@@ -119,6 +135,7 @@ public class CartServiceImpl implements CartService {
         cart.setSubtotal(subtotalCart);
         cart.setInsertCartsDate(date);
         cart.setCartDetails(cartDetailList);
+        cart.setGadgets(gadgets);
         cartRepository.save(cart);
         return cart;
     }
