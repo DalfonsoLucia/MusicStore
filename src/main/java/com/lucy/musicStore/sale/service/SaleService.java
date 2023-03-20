@@ -6,5 +6,8 @@ import com.lucy.musicStore.sale.data.model.Sale;
 public interface SaleService {
 
     Sale findById(Integer id) throws NoSaleIdFoundException;
+
     Sale calculateFinalPrice(Integer id);
+
+    void deleteSale(Integer id);
 }

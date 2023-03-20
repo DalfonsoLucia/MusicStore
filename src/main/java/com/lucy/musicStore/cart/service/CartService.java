@@ -17,6 +17,9 @@ public interface CartService {
     List<CartDTO> findByArtistSold(String artist) throws NoArtistFoundException;
     List<CartDTO> findByTitleSold(String title) throws NoTitleFoundException;
     void save(CartDTO cartDTO);
+
     Cart calculateSubtotal(List<MusicDetailDTO> musicDetailDTOS, List<GadgetDTO> gadgetList) throws ParseException;
+
+    void deleteCart(Integer id);
 }
 

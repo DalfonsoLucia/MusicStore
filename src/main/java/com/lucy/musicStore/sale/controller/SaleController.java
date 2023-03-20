@@ -5,6 +5,7 @@ import com.lucy.musicStore.sale.data.model.Sale;
 import com.lucy.musicStore.sale.service.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,6 +19,12 @@ public class SaleController {
     @ResponseStatus(HttpStatus.OK)
     public Sale findById(@PathVariable Integer id) throws NoSaleIdFoundException {
         return saleService.findById(id);
+    }
+
+    @DeleteMapping("deleteSale/{id}")
+    public ResponseEntity deleteCart(@PathVariable Integer id) {
+        saleService.deleteSale(id);
+        return new ResponseEntity<> ("selected sale successfully deleted", HttpStatus.OK);
     }
 
     @GetMapping("total/{idCart}")

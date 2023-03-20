@@ -139,6 +139,11 @@ public class CartServiceImpl implements CartService {
         cartRepository.save(cart);
         return cart;
     }
+
+    @Override
+    public void deleteCart(Integer id) {
+        cartRepository.deleteById(id);
+    }
 }
 
 

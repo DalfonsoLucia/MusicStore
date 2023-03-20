@@ -73,4 +73,9 @@ public class SaleServiceImpl implements SaleService {
         Gadget gadgetStock = gadgetRepository.findById(gadget.getId()).get();
         gadgetStock.setAmountStockGadget(gadgetStock.getAmountStockGadget() - gadget.getQuantity());
     }
+
+    @Override
+    public void deleteSale(Integer id) {
+        saleRepository.deleteById(id);
+    }
 }

@@ -128,10 +128,12 @@ public class OrdinationServiceImpl implements OrdinationService {
     @Override
     public List<Ordination> findByGadget(Integer id) throws NoOrdinationGadgetIdFoundException {
         List<Ordination> ordersGadget = this.ordinationRepository.findByGadget(id);
-        if (ordersGadget.isEmpty()) {
-            throw new NoOrdinationGadgetIdFoundException();
-        }
         return ordersGadget;
+    }
+
+    @Override
+    public void deleteOrder(Integer id) {
+        ordinationRepository.deleteById(id);
     }
 
     @Override

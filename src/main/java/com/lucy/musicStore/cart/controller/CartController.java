@@ -6,10 +6,10 @@ import com.lucy.musicStore.cart.dto.CartDTO;
 import com.lucy.musicStore.exception.NoArtistFoundException;
 import com.lucy.musicStore.exception.NoCartIdFoundException;
 import com.lucy.musicStore.exception.NoTitleFoundException;
-import com.lucy.musicStore.product.music.data.dto.MusicDetailDTO;
 import com.lucy.musicStore.product.music.data.model.CartRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -50,6 +50,12 @@ public class CartController {
     @ResponseStatus(HttpStatus.OK)
     public Cart calculateSubtotal(@RequestBody CartRequest cartRequest) throws ParseException {
         return cartService.calculateSubtotal(cartRequest.getMusicDetailDTOList(), cartRequest.getGadgetList());
+    }
+
+    @DeleteMapping("deleteCart/{id}")
+    public ResponseEntity deleteCart(@PathVariable Integer id) {
+        cartService.deleteCart(id);
+        return new ResponseEntity<> ("selected cart successfully deleted", HttpStatus.OK);
     }
 }
 

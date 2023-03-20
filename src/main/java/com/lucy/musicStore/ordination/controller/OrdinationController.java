@@ -8,6 +8,7 @@ import com.lucy.musicStore.product.music.data.model.Album;
 import com.lucy.musicStore.product.music.data.model.Single;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -55,5 +56,11 @@ public class OrdinationController {
     @ResponseStatus(HttpStatus.OK)
     public List<Ordination> findByOrderDate(@PathVariable String insertOrdinationDate) throws NoOrdinationInsertDateFoundException {
         return ordinationService.findByOrderDate(insertOrdinationDate);
+    }
+
+    @DeleteMapping("deleteOrder/{id}")
+    public ResponseEntity deleteOrder(@PathVariable Integer id) {
+        ordinationService.deleteOrder(id);
+        return new ResponseEntity<> ("selected order successfully deleted", HttpStatus.OK);
     }
 }

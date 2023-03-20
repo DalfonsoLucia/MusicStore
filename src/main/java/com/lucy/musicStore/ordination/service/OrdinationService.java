@@ -18,5 +18,8 @@ public interface OrdinationService {
     List<Ordination> findBySingle(Integer id) throws NoOrdinationSingleIdFoundException;
 
     List<Ordination> findByGadget(Integer id) throws NoOrdinationGadgetIdFoundException;
+
     List<Ordination> findByOrderDate(String insertOrdinationDate) throws NoOrdinationInsertDateFoundException;
+
+    void deleteOrder(Integer id);
 }
